@@ -1,0 +1,11 @@
+.node {
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.node:hover, .node[data-selected="true"] {
+    outline: 1px dashed #ff7800;
+    cursor: pointer;
+}
