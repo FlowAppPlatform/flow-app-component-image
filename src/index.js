@@ -64,7 +64,23 @@ class ImageComponent extends AppComponent {
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
     });
-    return <div className="node image" {...elemProps} />;
+      //Filter out unwanted props
+      const {
+          componentData,
+          isDragging,
+          canAcceptDrop,
+          hasChildren,
+          getComponent,
+          getComponentType,
+          getComponentPropertyData,
+          setPropertyData,
+          moveUI,
+          moveInto,
+          setHoverObject,
+          hoverObject,
+          ...props
+      } = elemProps;
+    return <div className="node image" {...props} />;
   }
 }
 
