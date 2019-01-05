@@ -66,6 +66,8 @@ class ImageComponent extends AppComponent {
     });
       //Filter out unwanted props
       const {
+          parentId,
+          componentType,
           componentData,
           isDragging,
           canAcceptDrop,
