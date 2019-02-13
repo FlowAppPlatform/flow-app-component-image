@@ -56,6 +56,11 @@ class ImageComponent extends AppComponent {
     this.state = Object.assign(this.state, newState); // merge two states together, and dont lose any parent state properties.
   }
 
+  triggerGraphEvent = () => {
+    const graphId = this.getPropertyData('event');
+    this.getElementProps().onEvent(graphId)
+  }
+
   renderContent() {
     const elemProps = this.getElementProps();
     elemProps.style = Object.assign(this.getDefaultStyle() || {}, {
@@ -82,7 +87,14 @@ class ImageComponent extends AppComponent {
           hoverObject,
           ...props
       } = elemProps;
-    return <div className="node image" {...props} />;
+    return (
+      <div 
+        className="node image" 
+        onMouseOver={this.triggerGraphEvent}
+        onClick={this.triggerGraphEvent}
+        {...props} 
+      />
+    );
   }
 }
 
