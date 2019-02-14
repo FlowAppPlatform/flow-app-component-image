@@ -36,8 +36,22 @@ class ImageComponent extends AppComponent {
           categoryDescription: 'Events for the image',
           properties: [
             {
-              id: 'event',
-              name: 'Events',
+              id: 'load',
+              name: 'Load Event',
+              type: 'graph',
+              options: {},
+              data: null,
+            },
+            {
+              id: 'click',
+              name: 'Click Event',
+              type: 'graph',
+              options: {},
+              data: null,
+            },
+            {
+              id: 'hover',
+              name: 'Hover Event',
               type: 'graph',
               options: {},
               data: null,
@@ -56,8 +70,12 @@ class ImageComponent extends AppComponent {
     this.state = Object.assign(this.state, newState); // merge two states together, and dont lose any parent state properties.
   }
 
-  triggerGraphEvent = () => {
-    const graphId = this.getPropertyData('event');
+  componentDidMount() {
+    this.triggerGraphEvent('load')
+  }
+
+  triggerGraphEvent = (eventId) => {
+    const graphId = this.getPropertyData(eventId);
     this.getElementProps().onEvent(graphId)
   }
 
@@ -90,8 +108,8 @@ class ImageComponent extends AppComponent {
     return (
       <div 
         className="node image" 
-        onMouseOver={this.triggerGraphEvent}
-        onClick={this.triggerGraphEvent}
+        onMouseOver={() => this.triggerGraphEvent('hover')}
+        onClick={() => this.triggerGraphEvent('click')}
         {...props} 
       />
     );
