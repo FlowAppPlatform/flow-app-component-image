@@ -38,7 +38,7 @@ class ImageComponent extends AppComponent {
             {
               id: 'align-container',
               name: 'Align Container',
-              type: 'position',
+              type: 'position', 
               options: ['left', 'center', 'right'],
               data: null,
             },
@@ -47,46 +47,17 @@ class ImageComponent extends AppComponent {
               name: 'Width',
               type: 'dropdown',
               options: {
-                options: [{
-                    label: '10%',
-                    value: 'ten'
-                  },
-                  {
-                    label: '20%',
-                    value: 'twenty'
-                  },
-                  {
-                    label: '30%',
-                    value: 'thirty'
-                  },
-                  {
-                    label: '40%',
-                    value: 'forty'
-                  },
-                  {
-                    label: '50%',
-                    value: 'fifty'
-                  },
-                  {
-                    label: '60%',
-                    value: 'sixty'
-                  },
-                  {
-                    label: '70%',
-                    value: 'seventy'
-                  },
-                  {
-                    label: '80%',
-                    value: 'eighty'
-                  },
-                  {
-                    label: '90%',
-                    value: 'ninety'
-                  },
-                  {
-                    label: '100%',
-                    value: 'full-page'
-                  }
+                options: [
+                  { label: '10%', value: 'ten' },
+                  { label: '20%', value: 'twenty' },
+                  { label: '30%', value: 'thirty'},
+                  { label: '40%', value: 'forty' },
+                  { label: '50%', value: 'fifty' },
+                  { label: '60%', value: 'sixty'},
+                  { label: '70%', value: 'seventy' },
+                  { label: '80%', value: 'eighty' },
+                  { label: '90%', value: 'ninety'},
+                  { label: '100%', value: 'full-page'}
                 ]
               },
               data: null,
@@ -96,18 +67,10 @@ class ImageComponent extends AppComponent {
               name: 'Vertical Align',
               type: 'dropdown',
               options: {
-                options: [{
-                    label: 'Top',
-                    value: 'top'
-                  },
-                  {
-                    label: 'Middle',
-                    value: 'middle'
-                  },
-                  {
-                    label: 'Bottom',
-                    value: 'bottom'
-                  },
+                options: [
+                  { label: 'Top', value: 'top' },
+                  { label: 'Middle', value: 'middle' },
+                  { label: 'Bottom', value: 'bottom' },
                 ]
               },
               data: null
@@ -118,6 +81,20 @@ class ImageComponent extends AppComponent {
           categoryName: 'Events',
           categoryDescription: 'Events for the image',
           properties: [{
+              id: 'load',
+              name: 'Load Event',
+              type: 'graph',
+              options: {},
+              data: null,
+            },
+            {
+              id: 'click',
+              name: 'Click Event',
+              type: 'graph',
+              options: {},
+              data: null,
+            },
+            {
               id: 'load',
               name: 'Load Event',
               type: 'graph',
@@ -165,14 +142,8 @@ class ImageComponent extends AppComponent {
 
   renderContent() {
     const elemProps = this.getElementProps();
-    const defaultWidth = {
-      width: '100%'
-    };
-    const defaultVerticalAlign = {
-      verticalAlign: 'top'
-    }
-    
-    // filter out unwanted props
+    const defaultWidth = { width: '100%' };
+    const defaultVerticalAlign = { verticalAlign: 'top' }
     elemProps.style = Object.assign(this.getDefaultStyle() || {}, {
       backgroundImage: `url(${this.getPropertyData('image') ||
         '/assets/images/cloud.jpg'})`,
@@ -209,12 +180,8 @@ class ImageComponent extends AppComponent {
     return (
       <div
         className = "node image"
-        onMouseOver = {
-          () => this.triggerGraphEvent('hover')
-        }
-        onClick = {
-          () => this.triggerGraphEvent('click')
-        }
+        onMouseOver = {() => this.triggerGraphEvent('hover')}
+        onClick = {() => this.triggerGraphEvent('click')}
         { ...props }
       />
     );
