@@ -95,20 +95,6 @@ class ImageComponent extends AppComponent {
               data: null,
             },
             {
-              id: 'load',
-              name: 'Load Event',
-              type: 'graph',
-              options: {},
-              data: null,
-            },
-            {
-              id: 'click',
-              name: 'Click Event',
-              type: 'graph',
-              options: {},
-              data: null,
-            },
-            {
               id: 'hover',
               name: 'Hover Event',
               type: 'graph',
@@ -144,13 +130,12 @@ class ImageComponent extends AppComponent {
     const elemProps = this.getElementProps();
     const defaultWidth = { width: '100%' };
     const defaultVerticalAlign = { verticalAlign: 'top' }
+    const imageUrl = this.getPropertyData('image') || '/assets/images/cloud.jpg';
     elemProps.style = Object.assign(this.getDefaultStyle() || {}, {
-      backgroundImage: `url(${this.getPropertyData('image') ||
-        '/assets/images/cloud.jpg'})`,
+      backgroundImage: `url(${imageUrl})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      content: `url(${this.getPropertyData('image') ||
-      '/assets/images/cloud.jpg'})`,
+      content: `url(${imageUrl})`,
       width: '100%',
       ...this.getPropertyData('vertical-align') &&
       alignVertical(this.getPropertyData('vertical-align').value) || defaultVerticalAlign,
@@ -175,6 +160,7 @@ class ImageComponent extends AppComponent {
       moveInto,
       setHoverObject,
       hoverObject,
+      onEvent, // eliminate onEvent from passing to div props to avoid `unknown event handler` warning
       ...props
     } = elemProps;
     return (
@@ -182,7 +168,7 @@ class ImageComponent extends AppComponent {
         className = "node image"
         onMouseOver = {() => this.triggerGraphEvent('hover')}
         onClick = {() => this.triggerGraphEvent('click')}
-        { ...props }
+        {...props}
       />
     );
   }
