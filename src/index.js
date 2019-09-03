@@ -9,7 +9,6 @@ import './style.css';
 import {
   alignContainer,
   containerWidth,
-  displayType,
   alignVertical
 } from './style';
 
@@ -121,8 +120,9 @@ class ImageComponent extends AppComponent {
 
   triggerGraphEvent = (eventId) => {
     const graphId = this.getPropertyData(eventId);
-    if (typeof this.getElementProps().onEvent === 'function') {
-      this.getElementProps().onEvent(graphId);
+    const { onEvent } = this.getElementProps();
+    if (typeof onEvent === 'function') {
+      onEvent(graphId);
     }
   }
 
@@ -135,8 +135,6 @@ class ImageComponent extends AppComponent {
       backgroundImage: `url(${imageUrl})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      content: `url(${imageUrl})`,
-      width: '100%',
       ...this.getPropertyData('vertical-align') &&
       alignVertical(this.getPropertyData('vertical-align').value) || defaultVerticalAlign,
       ...this.getPropertyData('container-width') &&
